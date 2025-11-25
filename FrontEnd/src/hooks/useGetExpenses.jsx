@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const fetchExpenses = async (dispatch, category, markAsDone) => {
     try {
-        axios.defaults.withCredentials = true;
-        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/expense/getall?category=${category}&done=${markAsDone}`);
+        const res = await api.get(`/api/v1/expense/getall?category=${category}&done=${markAsDone}`);
         if (res.data.success) {
             dispatch(setExpenses(res.data.expense));
         }

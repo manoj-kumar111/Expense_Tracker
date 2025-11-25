@@ -46,12 +46,7 @@ const UpdateExpense = ({expense}) => {
         console.log(formData);
         try {
             setLoading(true);
-            const res = await axios.put(`http://localhost:3000/api/v1/expense/update/${expense._id}`, formData, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                withCredentials: true
-            });
+            const res = await api.put(`/api/v1/expense/update/${expense._id}`, formData);
             if (res.data.success) {
                 // Refetch all expenses from backend to ensure UI is in sync
                 const { category, markAsDone } = await import("@/redux/expenseSlice").then(mod => mod.default.getInitialState ? mod.default.getInitialState() : { category: '', markAsDone: '' });

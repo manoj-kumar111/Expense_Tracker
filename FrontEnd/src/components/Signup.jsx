@@ -25,12 +25,7 @@ const Signup = () => {
     const submitHandler = async (e)=>{
         e.preventDefault();
         try{
-            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/register`, input, {
-                headers:{
-                    'Content-type':'application/json'
-                },
-                withCredentials:true
-            });
+            const res = await api.post('/api/v1/user/register', input);
             console.log(res);
             if(res.data.success){
                 toast.success(res.data.message);
